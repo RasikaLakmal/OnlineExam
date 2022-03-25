@@ -42,15 +42,13 @@ Route::get('/sexams',[StudentController::class, 'sexams']);
 Route::get('/ssexams/{id}',[StudentController::class, 'ssexams'])->name('ssexams');
 Route::get('/waiting',[StudentController::class, 'waiting']);
 
-Route::get('/sstp/{email}',[Frontendcontroller::class, 'sstp'])->name('sstp');
-Route::get('/sacp/{email}',[Frontendcontroller::class, 'sacp'])->name('sacp');
-Route::get('/sinp/{email}',[Frontendcontroller::class, 'sinp'])->name('sinp');
+
 Route::post('/addq',[TeacherController::class,'addq']);
 Route::post('/newq2',[TeacherController::class,'newq2']);
 Route::post('/publish',[TeacherController::class,'publishex'])->name('publish');
 Route::get('/publishexam/{id}',[TeacherController::class,'publishexam'])->name('publishexam');
 Route::get('/answeringe/{id}',[TeacherController::class,'answeringe'])->name('answeringe');
-Route::post('/answeringed',[TeacherController::class, 'answeringed']);
+Route::post('answeringed',[StudentController::class, 'answeringed']);
 
 
 

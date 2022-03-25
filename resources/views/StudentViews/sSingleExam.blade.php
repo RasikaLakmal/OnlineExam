@@ -173,7 +173,7 @@ input.invalid {
     <h4 class="text-center">Time Left :<span id="timer" style="color: red">0.00</span></b></h4><br>
 </br>
 </br><form id="regForm"  method="POST" action="/answeringed" >
-
+@csrf
 
 @foreach($Xt as $x)
 <!-- One "tab" for each step in the form: -->

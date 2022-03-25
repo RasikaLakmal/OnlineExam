@@ -25,7 +25,7 @@ class StudentController extends Controller
         return view('StudentViews.waiting');
     }
 
-    public function answeringed($id){
+    public function answeringed(request $id){
         //DB::table('exam')->where('id',$id)->update(['status' => "published",]);
         //$X =DB::table('exams')->where('exam_id',$exam_id)->value('exam_id');
          
@@ -33,19 +33,16 @@ class StudentController extends Controller
         //$del=DB::table('draftedexams')->where('exam_id',$id ) ->delete();
       foreach($questions as $q){
         DB::table('answeringexams')->insert([
-            'exam_id' => $q->exam_id,'question' => $q->question,'answer1' => $q->answer1,'answer2' => $q->answer2,'answer3' => $q->answer3,'answer4' => $q->answer4,'correct_answer' => $q->correct_answer
+            'exam_id' => $q->exam_id,'question' => $q->question,'selected_answer' => $q->optradio
     ]);
       }
-
-    DB::table('sexams')->where('exam_id',$id)->update([
-        'exam_id' => $id,'status' => "attended",
-    ]);
-        //DB::table('sexams')->where('exam_id',$id)->insert([
-       //     'exam_id' => $id,'status' => "pending",
-//]);
-
-//'starting_time' => $examid,'duration' => $examid,
+     // $questions=DB::table('publishedexams')->where('exam_id',$id)->get();
+     // foreach($questions as $q){
+    //DB::table('answeringexams')->where('exam_id',$id)->update([
+    //    'exam_id' => $id,'status' => "attended",
+    //]);}
+        
 $p=DB::table('sexams')->get();
-return view('/TeacherViews.sExams')->with('sexamt',$p);
+return redirect('/sexams')->with('sexamt',$p);
         }
 }
