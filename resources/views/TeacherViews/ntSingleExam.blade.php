@@ -44,14 +44,17 @@
                
 
             <li class="collapsed">
-                  <a href="dashboard"><i class="fa fa-dashboard fa-lg"></i>Dashboard</span></a>
+                  <a href="/dashboard"><i class="fa fa-dashboard fa-lg"></i>Dashboard</span></a>
                 </li>
                 <li class="collapsed ">
-                  <a href="mse"><i class="fa fa-gift fa-lg"></i>Monitor Started Exams</a>
+                  <a href="/mse"><i class="fa fa-gift fa-lg"></i>Monitor Started Exams</a>
                 </li>
 
+                <li class="collapsed ">
+                  <a href="/texams"><i class="fa fa-gift fa-lg"></i>Exams</a>
+                </li>
                 <li class="active ">
-                  <a href="texams"><i class="fa fa-gift fa-lg"></i>Exams</a>
+                  <a ><i class="fa fa-gift fa-lg"></i>New Exams</a>
                 </li>
                  <!--li class="collapsed ">
                   <a href="http://192.248.56.20/match-module/subtopic"><i class="fa fa-gift fa-lg"></i>Sub Topic</a>
@@ -109,34 +112,10 @@
   </div>
  <div id="page-wrapper">
     <div class="row">
-    
-        <div class="border"><span>Exams</span></div><div><a href="/newexamc" type="button" class="btn btn-success ">New Exam</a></div>
-        <table  class="table table-striped table-bordered tabledash" >
-        <thead>
-        <tr>
-        <th scope="col">Exam</th>
-      <th scope="col">Last Updated</th>
-      <th scope="col">Status</th>
-           
-            
-            
-            
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($examt as $user)
-            <tr>
-            
-
-            <td scope="row"><a href="{{route('tsexams',$user->exam_id)}}" target="_blank">{{$user->exam_id}}</a></td>
-      <td>{{$user->updated_at}}</td>
-      <td>{{$user->status}}</td>
-                
-               
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
+    <form method="POST" action="/newexamcd" enctype="multipart/form-data">
+    @csrf
+    <div title="examid">Exam Id</div><input id="examid" class="form-control" type="text" name="examid" placeholder="ExamId" required="required" ><br>
+        <div class="border"></div><div></br><div class="col-md-12  text-right"><input class="btn btn-primary" type="submit" value="Save"></form>
     
     </div>
 </div>
@@ -144,14 +123,14 @@
 <div class="modal-content" style="width:25%">
     <span onclick="document.getElementById('myModalqw').style.display = 'none';" class="close">&times;</span>
 <form method="POST" action="/upcomingeventsadmin" enctype="multipart/form-data">
-        @csrf
         
         <div title="Link">Link</div><input id="link" class="form-control" type="text" name="link" placeholder="Link" required="required" ><br>
         <input id="id" class="form-control" type="hidden" name="id" placeholder="Link" required="required" ><br>
-        <div title="firstname">Date</div><input id="date" class="form-control" type="text" name="date" placeholder="Date" required="required" ><br>
-        <div title="event name">Event Name</div><input id="ename" class="form-control" type="text" name="ename" placeholder="Event Name" required="required" ><br>
-        <div title="description">Description</div><input id="des" class="form-control" type="text" name="description" placeholder="Description" required="required" ><br>
-       <input class="btn btn-primary" type="submit" value="submit">
+        <div title="examdate">Date</div><input id="date" class="form-control" type="date" name="examdate" placeholder="Exam Date"  ><br>
+        <div title="stime">Start Time</div><input id="stime" class="form-control" type="time" name="stime" placeholder="Start Time" ><br>
+        <div title="etime">End Time</div><input id="etime" class="form-control" type="time" name="etime" placeholder="End Time"  ><br>
+        <div title="duration">Duration</div><input id="duration" class="form-control" type="time" name="duration" placeholder="Duration"  ><br>
+       <input class="btn btn-primary" type="submit" value="Save">
         
     </form>
     </div>
@@ -161,15 +140,19 @@
 <div id="myModalqw2" class="modal" >
 <div class="modal-content" style="width:50%">
     <span onclick="document.getElementById('myModalqw2').style.display = 'none';" class="close">&times;</span>
-<form method="POST" action="/upcomingeventsadminadd" enctype="multipart/form-data">
+<form method="POST" action="/addqn" enctype="multipart/form-data">
         @csrf
         
-        <div title="Link">Link</div><input id="link" class="form-control" type="text" name="link" placeholder="Link" required="required" ><br>
-        <input id="id" class="form-control" type="hidden" name="id" placeholder="Link" required="required" ><br>
-        <div title="firstname">Date</div><input id="date" class="form-control" type="text" name="date" placeholder="Date" required="required" ><br>
-        <div title="event name">Event Name</div><input id="ename" class="form-control" type="text" name="ename" placeholder="Event Name" required="required" ><br>
-        <div title="description">Description</div><input id="des" class="form-control" type="text" name="description" placeholder="Description" required="required" ><br>
-       <input class="btn btn-primary" type="submit" value="submit">
+        <div title="examid">Exam Id</div><input id="examid" class="form-control" type="text" name="examid" placeholder="ExamId" required="required" ><br>
+        <input id="id" class="form-control" type="hidden" name="id" placeholder="Question" required="required" ><br>
+        <div title="question">Question</div><input id="question" class="form-control" type="text" name="question" placeholder="Question" required="required" ><br>
+        <div title="answer1">Answer1</div><input id="answer1" class="form-control" type="text" name="answer1" placeholder="Answe 1" required="required" ><br>
+        <div title="answer2">Answer2</div><input id="answer2" class="form-control" type="text" name="answer2" placeholder="Answe 2" required="required" ><br>
+        <div title="answer3">Answer3</div><input id="answer3" class="form-control" type="text" name="answer3" placeholder="Answe 3" required="required" ><br>
+        <div title="answer4">Answer4</div><input id="answer4" class="form-control" type="text" name="answer4" placeholder="Answe 4" required="required" ><br>
+        <div title="canswer">Correct Answer</div><input id="canswer" class="form-control" type="text" name="canswer" placeholder="Correct Answer" required="required" ><br>
+        
+       <input class="btn btn-success" type="submit" value="Save">
         
     </form>
     </div>
@@ -319,29 +302,7 @@ $(document).on("click","#DeleteBtn",function(e){
           });
      </script>
      
-     @elseif($msg == "Exam Published")
-     <script>
-     Swal.fire({
-               position: 'top',
-               icon: 'success',
-               title: '{{$msg}}',
-               showConfirmButton: false,
-               timer: 2000
-            
-          });
-     </script>
-     
-     @elseif($msg == "Successfully Done")
-     <script>
-     Swal.fire({
-               position: 'top',
-               icon: 'success',
-               title: '{{$msg}}',
-               showConfirmButton: false,
-               timer: 2000
-            
-          });
-     </script>
+    
 
 @elseif($msg == "Deleted successfully")
      <script>

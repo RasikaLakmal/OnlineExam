@@ -6,7 +6,7 @@
     <title>Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-     <meta name="_token" content="nsZZRkbhIrpMBUQEt7jkULnMpSc7Tiyp3I5Z9oWb"/>
+     <meta name="_token" content="SFC22gpZIqy5TAzLOu4onWvu4TqiJ6da2P7Tlwi4"/>
 
 
      <link rel="stylesheet" type="text/css" href="/css/bootstrap1.min.css"/>
@@ -22,51 +22,15 @@
     
     <link href="/css/metallic1.css" rel="stylesheet" typeee="text/css"/>
         <link href="/css/select21.css" rel="stylesheet" typeee="text/css"/>
-        <link rel="sty1esheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="sty1esheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">   
 
-<link rel="stylesheet" href="styleprof.css">
 
+        <link rel="stylesheet" href="styleprof.css">
 
 
  
    
 </head>
-<style>
-
-* {
-  box-sizing: border-box;
-}
-
-/* Create two equal columns that floats next to each other */
-.column1 {
-  float: left;
-  width: 60%;
-  padding: 1px;
-  height: 300px; /* Should be removed. Only for demonstration */
-}
-.column {
-  float: left;
-  width: 40%;
-  padding: 1px;
-  height: 300px; /* Should be removed. Only for demonstration */
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-.center {
-
-width: 100%;
-
-padding: 10px;
-}
-
-</style>
-<body><div class="card" style="width: 180rem;">
+<body>
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -79,7 +43,7 @@ padding: 10px;
             <ul id="menu-content" class="menu-content collapse out">
                
 
-                <li class="collapsed">
+            <li class="collapsed">
                   <a href=""><i class="fa fa-dashboard fa-lg"></i>Home</span></a>
                 </li>
                 <!--li class="collapsed ">
@@ -89,10 +53,37 @@ padding: 10px;
                 <li class="active ">
                   <a href="sexams"><i class="fa fa-gift fa-lg"></i>Exams</a>
                 </li>
+                 <!--li class="collapsed ">
+                  <a href="http://192.248.56.20/match-module/subtopic"><i class="fa fa-gift fa-lg"></i>Sub Topic</a>
+                </li>
+                <li class="collapsed ">
+                  <a href="http://192.248.56.20/match-module/technologies"><i class="fa fa-gift fa-lg"></i>Technologies</a>
+                </li>
 
-                
+                <li class="collapsed ">
+                  <a href="http://192.248.56.20/match-module/event"><i class="fa fa-gift fa-lg"></i>Events</a>
+                </li>
+
+                <li  data-toggle="collapse" data-target="#staff" class="collapsed ">
+                  <a href="#"><i class="fa fa-gift fa-lg"></i>University<span class="arrow"></span></a>
+                </li>
+
+                <ul class="sub-menu collapse " id="staff">
+                  <li class=""><a href="http://192.248.56.20/match-module/university">University</a></li>
+                  <li class=""><a href="http://192.248.56.20/match-module/faculty">Faculty</a></li>
+                    <li class=""><a href="http://192.248.56.20/match-module/department">Department</a></li>
+                </ul-->
 
 
+                  
+                 <!--li data-toggle="collapse" data-target="#profile" class="collapsed">
+                    <a href="#"><i class="fa fa-user fa-lg"></i> Profile <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="profile">
+                  <li><a href="http://192.248.56.20/match-module/mail/update">Update Mail</a></li>
+                  <li><a href="http://192.248.56.20/match-module/members/change-password">Change Password</a></li>
+                  <li><a href="http://192.248.56.20/match-module/auth/logout">Logout</a></li>
+                </ul-->
 
                  
                
@@ -100,7 +91,7 @@ padding: 10px;
      </div>
 </div>
 
-<div class="admin-header login">
+  <div class="admin-header login">
       <a href="#"><i class="fa fa-user"></i> &nbsp;Profile</a> &nbsp; 
       <span><button class="fa fa-sign-out" style="height:40px;" >
                 <!--i class="fa fa-sign-out"></i-->
@@ -114,29 +105,14 @@ padding: 10px;
                             </x-dropdown-link>
                         </form>
                 
-              </button></span></div>
+              </button></span></a></div>
   </div>
  <div id="page-wrapper">
     <div class="row">
     
-        <div class="border"><span>Exam Name</span></div>
-        <div id="container">
-    
-        <div class="tebody">
-    <div class="search">
-        <form >
-            <input type="text" name="search" >
-            <button class="btn btn-primary" type="submit">Search</button>
-        </form>
-    </div>
-    <div class="tnewexam">
-        <form action="">
-        
-        </form>
-    </div>
-    <div >
-    <table class="table table-bordered" style="margin-left:auto;margin-right:auto;">
-  <thead class="thead-dark">
+        <div class="border"><span>Exams</span></div>
+        <table  class="table table-striped table-bordered tabledash" >
+  <thead >
     <tr>
       <th scope="col">Exam</th>
       <th scope="col">Starting Time</th>
@@ -148,53 +124,54 @@ padding: 10px;
   <tbody>
   @foreach($d as $user)
     <tr>
-    <td scope="row"><a href="/ssexams/{id}" target="_blank">{{$user->exam_id}}</a></td>
-      <td>{{$user->exam_starttime}}</td>
-      <td>{{$user->duration}}</td>
+    <td scope="row"><a href="{{route('ssexams',$user->exam_id)}}" target="_blank">{{$user->exam_id}}</a></td>
+      <td></td>
+      <td></td>
       <td>pending</td>
       
     </tr>@endforeach
-    <tr>
-      <th scope="row"><a href="/eresults" target="_blank">exam 2</a></th>
-      <td>f</td>
-      <td>g</td>
-      <td>attended</td>
-     
-    </tr></tbody>
+   </tbody>
 </table>
     </div>
+</div>
+<div id="myModalqw" class="modal" >
+<div class="modal-content" style="width:25%">
+    <span onclick="document.getElementById('myModalqw').style.display = 'none';" class="close">&times;</span>
+<form method="POST" action="/upcomingeventsadmin" enctype="multipart/form-data">
+        @csrf
+        
+        <div title="Link">Link</div><input id="link" class="form-control" type="text" name="link" placeholder="Link" required="required" ><br>
+        <input id="id" class="form-control" type="hidden" name="id" placeholder="Link" required="required" ><br>
+        <div title="firstname">Date</div><input id="date" class="form-control" type="text" name="date" placeholder="Date" required="required" ><br>
+        <div title="event name">Event Name</div><input id="ename" class="form-control" type="text" name="ename" placeholder="Event Name" required="required" ><br>
+        <div title="description">Description</div><input id="des" class="form-control" type="text" name="description" placeholder="Description" required="required" ><br>
+       <input class="btn btn-primary" type="submit" value="submit">
+        
+    </form>
     </div>
 
-<script>
-// Set the date we're counting down to
-var countDownDate = new Date("Jan 5, 2024 15:37:25").getTime();
+</div>
 
-// Update the count down every 1 second
-var x = setInterval(function() {
+<div id="myModalqw2" class="modal" >
+<div class="modal-content" style="width:50%">
+    <span onclick="document.getElementById('myModalqw2').style.display = 'none';" class="close">&times;</span>
+<form method="POST" action="/upcomingeventsadminadd" enctype="multipart/form-data">
+        @csrf
+        
+        <div title="Link">Link</div><input id="link" class="form-control" type="text" name="link" placeholder="Link" required="required" ><br>
+        <input id="id" class="form-control" type="hidden" name="id" placeholder="Link" required="required" ><br>
+        <div title="firstname">Date</div><input id="date" class="form-control" type="text" name="date" placeholder="Date" required="required" ><br>
+        <div title="event name">Event Name</div><input id="ename" class="form-control" type="text" name="ename" placeholder="Event Name" required="required" ><br>
+        <div title="description">Description</div><input id="des" class="form-control" type="text" name="description" placeholder="Description" required="required" ><br>
+       <input class="btn btn-primary" type="submit" value="submit">
+        
+    </form>
+    </div>
 
-  // Get today's date and time
-  var now = new Date().getTime();
-    
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
-    
-  // Time calculations for days, hours, minutes and seconds
-  
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-  // Output the result in an element with id="demo"
-  document.getElementById("demo").innerHTML =  + hours + "h "
-  + minutes + "m " + seconds + "s ";
-    
-  // If the count down is over, write some text 
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
-  }
-}, 1000);
-</script>
+</div>
+
+
+
 
 
 <script type="text/javascript" src="/js/jquery-1.10.21.min.js"></script>
@@ -249,70 +226,22 @@ var x = setInterval(function() {
   <script type="text/javascript">
 	//alert('welcome');
 $(document).ready(function(){
-   var table= $('#pending-table').DataTable({
+   var table= $('#lecture-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '/',
+        ajax: '',
         columns: [
-         
-           // {data: 'first_name', name: 'first_name'},
-           // {data: 'last_name', name: 'last_name'},
+            {data: 'first_name', name: 'first_name'},
+            {data: 'last_name', name: 'last_name'},
+            {data: 'contact_no', name: 'contact_no'},
             {data: 'email', name: 'email'},
-           // {data: 'gender', name: 'gender'},
-           // {data: 'action', name: 'action',orderable:false,searchable:false},
-           // {data: 'select', name: 'select',orderable:false,searchable:false},
+            {data: 'action', name: 'action',orderable:false,searchable:false},
 
         ],
          "scrollY": 500,
         "scrollX": true,
         "fnDrawCallback": function (oSettings) {
           $('[data-toggle="tooltip"]').tooltip();
-           $('.SelectPermission').change(function(){
-                    var Id = $(this).attr('id');
-                    var type = $(this).val();
-                    var url = '/';
-                    
-                    //////////
-                    swal({   
-                    title: "Are you sure?",    
-                    type: "warning",   
-                    showCancelButton: true,   
-                    confirmButtonColor: "#DB3945",   
-                    confirmButtonText: "Yes",   
-                    closeOnConfirm: false }, 
-                    function(isConfirm){   
-                         if (isConfirm) {  
-                            var get= $.get(url,{Type:type,userID:Id});
-
-					      	get.done(function( data ) {
-					            if(data.success) {
-							    swal({
-							          title: "Permission Allowed!",
-							          timer: 2000,
-							          type:"success",
-							          showConfirmButton: true
-							        });
-					         table.ajax.reload();
-					          
-					            } else{
-					            	alert('please try again!');
-					            }
-					        });
-					         
-					    
-					        }
-					                    });
-                    ///////////
-                    get.fail(function(){
-                        swal({
-                            title: "Fail please try again",
-                            timer: 2000,
-                            type:"fail",
-                            showConfirmButton: false
-                        });
-                    });
-                });
-
         }
     });
 
@@ -372,7 +301,7 @@ $(document).on("click","#DeleteBtn",function(e){
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 @if($msg = session()->get('msg'))
-@if($msg == "User Added")
+@if($msg == "Event updated")
 <script>
      Swal.fire({
                position: 'top',
@@ -383,8 +312,20 @@ $(document).on("click","#DeleteBtn",function(e){
             
           });
      </script>
-
-@elseif($msg == "Successfully Done")
+     
+     @elseif($msg == "Event Added")
+     <script>
+     Swal.fire({
+               position: 'top',
+               icon: 'success',
+               title: '{{$msg}}',
+               showConfirmButton: false,
+               timer: 2000
+            
+          });
+     </script>
+     
+     @elseif($msg == "Successfully Done")
      <script>
      Swal.fire({
                position: 'top',
@@ -409,16 +350,14 @@ $(document).on("click","#DeleteBtn",function(e){
      </script>
      
      @endif
-     @endif
+@endif
 <script> 
     $('.tabledash').DataTable();
  </script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<scr1pt src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/l.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<scr1pt src="https://cdn.datatab1es.net/1.10.19/js/jquery.dataTab1es.min.js"></scr1pt>
-<script src="https://cdn.datatab1es.net/l.16.19/js/dataTab1es.bootstrap4.min.js"></script>
-
-        </div>
+<script src="https://code.jquery.com/jquery-3.5.1.js" ></script>
+<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js" ></script>
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js" ></script>
+<script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js" ></script>
+<script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js" ></script>
 </body>
 </html>

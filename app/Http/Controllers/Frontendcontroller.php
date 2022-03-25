@@ -17,7 +17,7 @@ class Frontendcontroller extends Controller
                 
           if($role=="student"){
               $c=DB::table('students')->where('semail',$email)->first();
-              $d=DB::table('draftedexams')->get();
+              $d=DB::table('sexams')->get();
               return view('StudentViews.sExams')->with('c',$c)->with('d',$d);
           }
           elseif($role=="teacher"){

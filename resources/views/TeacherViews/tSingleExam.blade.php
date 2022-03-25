@@ -27,7 +27,15 @@
         <link rel="stylesheet" href="styleprof.css">
 
 
- 
+ <style>label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+    margin: .4rem 0;
+}</style>
    
 </head>
 <body>
@@ -113,8 +121,8 @@
  <div id="page-wrapper">
     <div class="row">
     
-        <div class="border"><span>Exam Name</span></div><div><button onclick="document.getElementById('myModalqw2').style.display = 'block';" id="myBtnqw2" class="btn btn-danger">Add Question</button></div>
-        <form><table  class="table table-striped table-bordered tabledash" >
+        <div class="border"><span>{{$Xtt}}</span></div><div><button onclick="document.getElementById('myModalqw2').style.display = 'block';" id="myBtnqw2" class="btn btn-danger">Add Question</button></div>
+        <form ></form><table  class="table table-striped table-bordered tabledash" >
         <thead>
         <tr>
         <th scope="col">Question</th>
@@ -134,8 +142,25 @@
       
     </tr>
     @endforeach
-        </tbody>
-    </table></br><div class="col-md-12  text-right"><button class="btn btn-info"  >Publish Paper</button></div></form>
+        </tbody><form>
+    </table><label for="edate">Exam Date:</label>
+
+<input type="date" id="edate" name="trip-start"
+       value="2022-01-22"
+       min="2022-03-01" max="2023-12-31">
+
+       <label for="stime">Exam Time:</label>
+
+<input type="time" id="stime" name="trip-start"
+       value="00-00"
+       >
+
+       <label for="duration">Duration:</label>
+
+<input type="time" id="duration" name="trip-start"
+       value="00-00-00"
+       ></br><button>Submit</button></form>
+</br><div class="col-md-12  text-right"><a type="button" class="btn btn-info " href="{{route('publishexam',$Xtt)}}" >Publish Exam</a></div></form>
     
     </div>
 </div>
@@ -310,7 +335,7 @@ $(document).on("click","#DeleteBtn",function(e){
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 @if($msg = session()->get('msg'))
-@if($msg == "Event updated")
+@if($msg == "Question Saved")
 <script>
      Swal.fire({
                position: 'top',

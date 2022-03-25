@@ -170,10 +170,10 @@ padding: 10px;
 </br>
 <div class="card text-center" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title"></h5> @foreach ($mset as $user)
-    <h2 class="card-text"> <h2>Exam Started time:</h2>{{$user->exam_starttime}}
-    @endforeach
-    <h2 class="card-text"> <h2>Exam Ended time</h2>{{$user->exam_endtime}}
+    <h5 class="card-title"></h5> 
+    <h2 class="card-text"> <h2>Exam Started time:</h2>exam_starttime
+    
+    <h2 class="card-text"> <h2>Exam Ending time</h2>exam_endtime
 
   </div>
 </div>

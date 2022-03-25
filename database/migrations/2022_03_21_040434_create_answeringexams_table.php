@@ -16,12 +16,14 @@ class CreateAnsweringexamsTable extends Migration
         Schema::create('answeringexams', function (Blueprint $table) {
             $table->id();
             $table->string('exam_id')->unique();
-            $table->string('estudent_id')->unique();
-            $table->string('questions');
+            $table->string('student_id')->unique();
+            $table->string('question');
             $table->string('selected_answer');
+            $table->boolean('completed_orn');
             $table->time('completed_time');
-            $table->time('sduration');
-            $table->time('started_time');
+            $table->time('duration');
+            $table->time('exam_starttime');
+            $table->time('exam_endtime');
             $table->timestamps();
         });
     }
