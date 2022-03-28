@@ -43,6 +43,9 @@
             <ul id="menu-content" class="menu-content collapse out">
                
 
+            <li class="active ">
+                  <a href="texams"><i class="fa fa-gift fa-lg"></i>Exams</a>
+                </li>
             <li class="collapsed">
                   <a href="dashboard"><i class="fa fa-dashboard fa-lg"></i>Dashboard</span></a>
                 </li>
@@ -50,9 +53,6 @@
                   <a href="mse"><i class="fa fa-gift fa-lg"></i>Monitor Started Exams</a>
                 </li>
 
-                <li class="active ">
-                  <a href="texams"><i class="fa fa-gift fa-lg"></i>Exams</a>
-                </li>
                  <!--li class="collapsed ">
                   <a href="http://192.248.56.20/match-module/subtopic"><i class="fa fa-gift fa-lg"></i>Sub Topic</a>
                 </li>
@@ -110,7 +110,7 @@
  <div id="page-wrapper">
     <div class="row">
     
-        <div class="border"><span>Exams</span></div><div><a href="/newexamc" type="button" class="btn btn-success ">New Exam</a></div>
+        <div class="border"><span>Exams</span></div><div><a href="/ntsexams" type="button" class="btn btn-success ">New Exam</a></div>
         <table  class="table table-striped table-bordered tabledash" >
         <thead>
         <tr>

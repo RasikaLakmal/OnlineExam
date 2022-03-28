@@ -19,7 +19,7 @@ class CreateResultsTable extends Migration
             $table->string('student_id')->unique();
             $table->string('question');
             $table->string('c_or_w');
-            $table->int('marks');
+            $table->integer('marks');
             $table->string('pass');
             $table->timestamps();
         });

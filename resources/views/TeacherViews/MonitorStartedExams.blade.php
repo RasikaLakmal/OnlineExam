@@ -78,7 +78,9 @@ padding: 10px;
          
             <ul id="menu-content" class="menu-content collapse out">
                
-
+            <li class="collapsed ">
+                  <a href="texams"><i class="fa fa-gift fa-lg"></i>Exams</a>
+                </li>
                 <li class="collapsed">
                   <a href="dashboard"><i class="fa fa-dashboard fa-lg"></i>Dashboard</span></a>
                 </li>
@@ -86,9 +88,7 @@ padding: 10px;
                   <a href="mse"><i class="fa fa-gift fa-lg"></i>Monitor Started Exams</a>
                 </li>
 
-                <li class="collapsed ">
-                  <a href="texams"><i class="fa fa-gift fa-lg"></i>Exams</a>
-                </li>
+              
 
                 
                  <!--li class="collapsed ">

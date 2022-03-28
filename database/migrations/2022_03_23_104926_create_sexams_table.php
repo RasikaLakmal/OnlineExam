@@ -17,7 +17,7 @@ class CreateSexamsTable extends Migration
             $table->id();
             $table->string('exam_id')->unique();
             $table->string('teacher_id')->nullable();
-            $table->time('starting_time')->nullable();
+            $table->dateTime('starting_time')->useCurrent();
             $table->time('duration')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();

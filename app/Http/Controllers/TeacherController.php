@@ -23,20 +23,27 @@ class TeacherController extends Controller
     }
     public function tsexams($exam_id)
     {
-       
+        //$c=DB::table('exams')->where('status',$exam_id);
+        //if($c=="drafted"){
         
         $Y =DB::table('draftedexams')->where('exam_id',$exam_id)->get();
         
         return view('TeacherViews.tSingleExam')->with('Xt',$Y)->with('Xtt',$exam_id);
+       // }
+        /*elseif($c=="published"){
+            $Y =DB::table('publishedexams')->where('exam_id',$exam_id)->get();
+        
+            return view('TeacherViews.MonitorStartedExams')->with('Xt',$Y)->with('Xtt',$exam_id);
+        }*/
     }
 //return $exam_id;
-    public function ntsexams($exam_id)
+    public function ntsexams()
     {
        
         
-        $Y =DB::table('draftedexams')->where('exam_id',$exam_id)->get();
+       
         
-        return view('TeacherViews.ntSingleExam')->with('Xt',$Y);
+        return view('TeacherViews.ntSingleExam');
     }
     /* DB::table('exams')->where('exam_id',$exam_id)->update(['status' => "draft",]);
         $X =DB::table('exams')->where('exam_id',$exam_id)->value('exam_id');*/
@@ -59,7 +66,7 @@ class TeacherController extends Controller
     DB::table('exams')->where('exam_id',$id)->update([
         'exam_id' => $id,'updated_at'=>$ti,'status' => "published",
     ]);
-        DB::table('sexams')->where('exam_id',$id)->insert([
+        DB::table('sexams')->where('exam_id',$id)->update([
             'exam_id' => $id,'status' => "pending",
 ]);
 
@@ -103,6 +110,27 @@ return redirect('/texams')->with('examt',$p)->with('msg',"Exam Published");
     
 }
 
+public function addqn(Request $id){
+
+    DB::table('draftedexams')->insert([
+        'exam_id' => $id->examid,'question' => $id->question,'answer1' => $id->answer1,'answer2' => $id->answer2,'answer3' => $id->answer3,'answer4' => $id->answer4,'correct_answer' => $id->canswer
+]);
+$ti=Carbon::now()->toDateTimeString();
+DB::table('exams')->insert([
+    'exam_id' => $id->examid,'updated_at'=>$ti,'status' => "drafted"]);
+
+$Y =DB::table('draftedexams')->where('exam_id',$id)->get();
+                                                                   
+ return redirect('/tsexams/{id}')->with('Xt',$Y)->with('Xtt',$id->examid)->with('msg',"Exam Added.");
+
+}
+
+public function dsv(Request $request){
+    $ti=Carbon::now()->toDateTimeString();
+    DB::table('sexams')->update([
+        'exam_id' => $request->examid,'starting_time'=>$request->edate,'duration' => $request->duration,'status' => "pending"]);
+        return redirect()->back();
+}
 /*public function addqn(Request $request){
 
     DB::table('draftedexams')->insert([
@@ -132,7 +160,9 @@ return view('TeacherViews.tSingleExam')->with('Xt',$Y)->with('Xtt',$request->exa
    }
    public function newexamc(){
    
-    return view('TeacherViews.ntSingleExam');
+    $Y =DB::table('draftedexams')->get();
+        
+        return view('TeacherViews.ntSingleExam')->with('Xt',$Y);
    }
 
 }

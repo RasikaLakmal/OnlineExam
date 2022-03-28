@@ -34,6 +34,7 @@ Route::get('/dashboard',[TeacherController::class, 'dashboard']);
 Route::get('/mse',[TeacherController::class, 'mse']);
 Route::get('/texams',[TeacherController::class, 'texams']);
 Route::get('/tsexams/{id}',[TeacherController::class, 'tsexams'])->name('tsexams');
+Route::get('/ntsexams',[TeacherController::class, 'ntsexams']);
 Route::post('/newexamcd',[TeacherController::class, 'newexamcd']);
 Route::get('/newexamc',[TeacherController::class, 'newexamc']);
 Route::get('/examt',[TeacherController::class, 'examt']);
@@ -44,6 +45,8 @@ Route::get('/waiting',[StudentController::class, 'waiting']);
 
 
 Route::post('/addq',[TeacherController::class,'addq']);
+Route::post('/addqn',[TeacherController::class,'addqn']);
+Route::post('/dsv',[TeacherController::class,'dsv']);
 Route::post('/newq2',[TeacherController::class,'newq2']);
 Route::post('/publish',[TeacherController::class,'publishex'])->name('publish');
 Route::get('/publishexam/{id}',[TeacherController::class,'publishexam'])->name('publishexam');

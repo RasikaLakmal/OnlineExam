@@ -35,7 +35,40 @@
 input,
 label {
     margin: .4rem 0;
-}</style>
+}
+.column1 {
+  float: left;
+  width: 60%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+.column {
+  float: left;
+  width: 40%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+  /* Split the screen in half */
+  .table > thead > tr > th{
+background-color: skyblue;      
+}
+
+  .table{
+    
+    border-collapse: collapse;
+    width:98%;
+    float: center;
+    padding: 5px;
+    margin: 5px ;
+
+}
+
+</style>
    
 </head>
 <body>
@@ -51,19 +84,21 @@ label {
             <ul id="menu-content" class="menu-content collapse out">
                
 
-            <li class="collapsed">
-                  <a href="/dashboard"><i class="fa fa-dashboard fa-lg"></i>Dashboard</span></a>
-                </li>
-                <li class="collapsed ">
-                  <a href="/mse"><i class="fa fa-gift fa-lg"></i>Monitor Started Exams</a>
-                </li>
+            
 
                 <li class="collapsed ">
                   <a href="/texams"><i class="fa fa-gift fa-lg"></i>Exams</a>
                 </li>
                 <li class="active ">
-                  <a ><i class="fa fa-gift fa-lg"></i>New Exams</a>
+                  <a ><i class="fa fa-gift fa-lg"></i>{{$Xtt}}</a>
                 </li>
+                <li class="collapsed">
+                  <a href="/dashboard"><i class="fa fa-dashboard fa-lg"></i>Dashboard</span></a>
+                </li>
+                <li class="collapsed ">
+                  <a href="/mse"><i class="fa fa-gift fa-lg"></i>Monitor Started Exams</a>
+                </li>
+               
                  <!--li class="collapsed ">
                   <a href="http://192.248.56.20/match-module/subtopic"><i class="fa fa-gift fa-lg"></i>Sub Topic</a>
                 </li>
@@ -122,6 +157,8 @@ label {
     <div class="row">
     
         <div class="border"><span>{{$Xtt}}</span></div><div><button onclick="document.getElementById('myModalqw2').style.display = 'block';" id="myBtnqw2" class="btn btn-danger">Add Question</button></div>
+        <div class="row">
+  <div class="column1" style="background-color:white;">
         <form ></form><table  class="table table-striped table-bordered tabledash" >
         <thead>
         <tr>
@@ -142,27 +179,51 @@ label {
       
     </tr>
     @endforeach
-        </tbody><form>
-    </table><label for="edate">Exam Date:</label>
+        </tbody>
+       
+    </table><form method="POST" action="/dsv"  enctype="multipart/form-data">
+    @csrf  
+    <input id="examid" class="form-control"  type="hidden" name="examid" placeholder="ExamId" required="required" value="{{$Xtt}}"><br>
+    <label for="edate">Exam Date:</label>
 
-<input type="date" id="edate" name="trip-start"
-       value="2022-01-22"
-       min="2022-03-01" max="2023-12-31">
+<input type="datetime-local" id="edate" name="edate"
+     
+      >
 
-       <label for="stime">Exam Time:</label>
-
-<input type="time" id="stime" name="trip-start"
-       value="00-00"
-       >
+    
 
        <label for="duration">Duration:</label>
 
-<input type="time" id="duration" name="trip-start"
-       value="00-00-00"
-       ></br><button>Submit</button></form>
+<input type="time" id="duration" name="duration" 
+       
+       ></br><input class="btn btn-secondary" type="submit" value="Update"></form>
 </br><div class="col-md-12  text-right"><a type="button" class="btn btn-info " href="{{route('publishexam',$Xtt)}}" >Publish Exam</a></div></form>
     
-    </div>
+  </div>
+  <div class="column" style="background-color:white;">
+
+
+  <form method="POST" action="/addq" enctype="multipart/form-data">
+        @csrf
+        
+        <input id="examid" class="form-control"  type="hidden" name="examid" placeholder="ExamId" required="required" value="{{$Xtt}}"><br>
+        <input id="id" class="form-control" type="hidden" name="id" placeholder="Question" required="required" ><br>
+        <div title="question">Question</div><input id="question" class="form-control" type="text" name="question" placeholder="Question" required="required" ><br>
+        <div title="answer1">Answer1</div><input id="answer1" class="form-control" type="text" name="answer1" placeholder="Answe 1" required="required" ><br>
+        <div title="answer2">Answer2</div><input id="answer2" class="form-control" type="text" name="answer2" placeholder="Answe 2" required="required" ><br>
+        <div title="answer3">Answer3</div><input id="answer3" class="form-control" type="text" name="answer3" placeholder="Answe 3" required="required" ><br>
+        <div title="answer4">Answer4</div><input id="answer4" class="form-control" type="text" name="answer4" placeholder="Answe 4" required="required" ><br>
+        <div title="canswer">Correct Answer</div><input id="canswer" class="form-control" type="text" name="canswer" placeholder="Correct Answer" required="required" ><br>
+        
+        <div class="col-md-12  text-right"><input class="btn btn-success" type="submit" value="Save"></div>
+        
+    </form>
+
+</div>
+</div>
+
+
+</div>
 </div>
 <div id="myModalqw" class="modal" >
 <div class="modal-content" style="width:25%">
@@ -185,21 +246,7 @@ label {
 <div id="myModalqw2" class="modal" >
 <div class="modal-content" style="width:50%">
     <span onclick="document.getElementById('myModalqw2').style.display = 'none';" class="close">&times;</span>
-<form method="POST" action="/addq" enctype="multipart/form-data">
-        @csrf
-        
-        <div title="examid">Exam Id</div><input id="examid" class="form-control" type="text" name="examid" placeholder="ExamId" required="required" ><br>
-        <input id="id" class="form-control" type="hidden" name="id" placeholder="Question" required="required" ><br>
-        <div title="question">Question</div><input id="question" class="form-control" type="text" name="question" placeholder="Question" required="required" ><br>
-        <div title="answer1">Answer1</div><input id="answer1" class="form-control" type="text" name="answer1" placeholder="Answe 1" required="required" ><br>
-        <div title="answer2">Answer2</div><input id="answer2" class="form-control" type="text" name="answer2" placeholder="Answe 2" required="required" ><br>
-        <div title="answer3">Answer3</div><input id="answer3" class="form-control" type="text" name="answer3" placeholder="Answe 3" required="required" ><br>
-        <div title="answer4">Answer4</div><input id="answer4" class="form-control" type="text" name="answer4" placeholder="Answe 4" required="required" ><br>
-        <div title="canswer">Correct Answer</div><input id="canswer" class="form-control" type="text" name="canswer" placeholder="Correct Answer" required="required" ><br>
-        
-       <input class="btn btn-success" type="submit" value="Save">
-        
-    </form>
+
     </div>
 
 </div>

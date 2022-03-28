@@ -22,7 +22,8 @@ class Frontendcontroller extends Controller
           }
           elseif($role=="teacher"){
               $c=DB::table('teachers')->where('temail',$email)->first();
-              return view('TeacherViews.Dashboard')->with('c',$c);
+              $d=DB::table('exams')->get();
+              return view('TeacherViews.tExams')->with('c',$c)->with('examt',$d);
           }
           
           

@@ -18,6 +18,8 @@ class CreateExamsTable extends Migration
             $table->string('exam_id')->unique();
             $table->string('teacher_id')->nullable();
             $table->string('status')->nullable();
+            $table->dateTime('starting_time')->useCurrent();
+            $table->time('duration')->nullable();
             $table->timestamps();
         });
     }
