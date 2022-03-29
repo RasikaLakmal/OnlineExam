@@ -25,7 +25,7 @@
         <link rel="sty1esheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="sty1esheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">   
 
-<link rel="stylesheet" href="styleprof.css">
+<!--link rel="stylesheet" href="styleprof.css"-->
 
 
 
@@ -172,28 +172,33 @@ input.invalid {
     
     <h4 class="text-center">Time Left :<span id="timer" style="color: red">0.00</span></b></h4><br>
 </br>
+
+<div style=" margin-left:14% ; padding:0px ;" >
 </br><form id="regForm"  method="POST" action="/answeringed" >
 @csrf
 
+<?php $n1=1; ?>
 @foreach($Xt as $x)
 <!-- One "tab" for each step in the form: -->
+<input id="examid" class="form-control"  type="hidden" name="examid" placeholder="ExamId" required="required" value="{{$Xtt}}">
 <div class="tab"><h2>{{$x->question}}</h2>
   <p><div class="form-check">
-  <input  type="radio" class="form-check-input" id="radio1" name="optradio" value="{{$x->answer1}}" checked>{{$x->answer1}}
+  <input  type="radio" class="form-check-input" id="{{$x->question}}a1" name="{{$x->question}}" value="{{$x->answer1}}" checked>{{$x->answer1}}
   <label class="form-check-label" for="radio1"></label>
 </div>
 <div class="form-check">
-  <input type="radio" class="form-check-input" id="radio2" name="optradio" value="{{$x->answer2}}">{{$x->answer2}}
+  <input type="radio" class="form-check-input" id="{{$x->question}}a2" name="{{$x->question}}" value="{{$x->answer2}}">{{$x->answer2}}
   <label class="form-check-label" for="radio2"></label>
 </div>
 <div class="form-check">
-  <input type="radio" class="form-check-input" id="radio3" name="optradio" value="{{$x->answer3}}">{{$x->answer3}}
+  <input type="radio" class="form-check-input" id="{{$x->question}}a3" name="{{$x->question}}" value="{{$x->answer3}}">{{$x->answer3}}
   <label class="form-check-label" for="radio2"></label>
 </div><div class="form-check">
-  <input type="radio" class="form-check-input" id="radio4" name="optradio" value="{{$x->answer4}}">{{$x->answer4}}
+  <input type="radio" class="form-check-input" id="{{$x->question}}a4" name="{{$x->question}}" value="{{$x->answer4}}">{{$x->answer4}}
   <label class="form-check-label" for="radio2"></label>
 </div></p>
 </div>
+<?php $n1++; ?>
 @endforeach
 
 
@@ -213,7 +218,7 @@ input.invalid {
 </div>
 
 </form>
-
+</div>
 
 
 <script>var currentTab = 0; // Current tab is set to be the first tab (0)

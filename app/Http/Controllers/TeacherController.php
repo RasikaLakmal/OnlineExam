@@ -53,6 +53,17 @@ class TeacherController extends Controller
         //$X =DB::table('exams')->where('exam_id',$exam_id)->value('exam_id');
          
         $questions=DB::table('draftedexams')->where('exam_id',$id)->get();
+        $ti=Carbon::now()->toDateTimeString();
+
+
+        DB::table('exams')->where('exam_id',$id)->update([
+            'exam_id' => $id,'updated_at'=>$ti,'status' => "published",
+        ]);
+            DB::table('sexams')->where('exam_id',$id)->update([
+                'exam_id' => $id,'status' => "pending",
+    ]);
+    
+
         $del=DB::table('draftedexams')->where('exam_id',$id ) ->delete();
       foreach($questions as $q){
         DB::table('publishedexams')->insert([
@@ -60,16 +71,7 @@ class TeacherController extends Controller
     ]);
       }
       
-      $ti=Carbon::now()->toDateTimeString();
-
-
-    DB::table('exams')->where('exam_id',$id)->update([
-        'exam_id' => $id,'updated_at'=>$ti,'status' => "published",
-    ]);
-        DB::table('sexams')->where('exam_id',$id)->update([
-            'exam_id' => $id,'status' => "pending",
-]);
-
+     
 //'starting_time' => $examid,'duration' => $examid,
 $p=DB::table('exams')->get();
 return redirect('/texams')->with('examt',$p)->with('msg',"Exam Published");
@@ -119,15 +121,15 @@ $ti=Carbon::now()->toDateTimeString();
 DB::table('exams')->insert([
     'exam_id' => $id->examid,'updated_at'=>$ti,'status' => "drafted"]);
 
-$Y =DB::table('draftedexams')->where('exam_id',$id)->get();
+
                                                                    
- return redirect('/tsexams/{id}')->with('Xt',$Y)->with('Xtt',$id->examid)->with('msg',"Exam Added.");
+    return redirect()->route('tsexams', [$id->examid]);
 
 }
 
 public function dsv(Request $request){
     $ti=Carbon::now()->toDateTimeString();
-    DB::table('sexams')->update([
+    DB::table('sexams')->insert([
         'exam_id' => $request->examid,'starting_time'=>$request->edate,'duration' => $request->duration,'status' => "pending"]);
         return redirect()->back();
 }
