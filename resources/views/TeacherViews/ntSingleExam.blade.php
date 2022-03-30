@@ -201,6 +201,7 @@ background-color: skyblue;
         
         <div title="examid">Exam Id</div><input id="examid" class="form-control"  type="text" name="examid" placeholder="ExamId" required="required" ><br>
         <input id="id" class="form-control" type="hidden" name="id" placeholder="Question" required="required" ><br>
+        <div title="questionid">Question id</div><input id="qid" class="form-control" type="text" name="qid" placeholder="Question Id" required="required" ><br>
         <div title="question">Question</div><input id="question" class="form-control" type="text" name="question" placeholder="Question" required="required" ><br>
         <div title="answer1">Answer1</div><input id="answer1" class="form-control" type="text" name="answer1" placeholder="Answe 1" required="required" ><br>
         <div title="answer2">Answer2</div><input id="answer2" class="form-control" type="text" name="answer2" placeholder="Answe 2" required="required" ><br>

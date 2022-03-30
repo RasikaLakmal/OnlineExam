@@ -17,10 +17,12 @@ class CreateResultsTable extends Migration
             $table->id();
             $table->string('exam_id')->unique();
             $table->string('student_id')->unique();
-            $table->string('question');
-            $table->string('c_or_w');
-            $table->integer('marks');
-            $table->string('pass');
+            $table->string('question')->nullable();
+            $table->string('qid')->nullable();
+            $table->string('aid')->nullable();
+            $table->string('c_or_w')->nullable();
+            $table->integer('marks')->nullable();
+            $table->string('pass')->nullable();
             $table->timestamps();
         });
     }

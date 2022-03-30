@@ -67,7 +67,7 @@ class TeacherController extends Controller
         $del=DB::table('draftedexams')->where('exam_id',$id ) ->delete();
       foreach($questions as $q){
         DB::table('publishedexams')->insert([
-            'exam_id' => $q->exam_id,'question' => $q->question,'answer1' => $q->answer1,'answer2' => $q->answer2,'answer3' => $q->answer3,'answer4' => $q->answer4,'correct_answer' => $q->correct_answer
+            'exam_id' => $q->exam_id,'question' => $q->question,'qid' => $q->qid,'answer1' => $q->answer1,'answer2' => $q->answer2,'answer3' => $q->answer3,'answer4' => $q->answer4,'correct_answer' => $q->correct_answer
     ]);
       }
       
@@ -91,7 +91,7 @@ return redirect('/texams')->with('examt',$p)->with('msg',"Exam Published");
             
     
             DB::table('answeringexams')->where('id',$id)->update([
-                'exam_id' => $exam_id,'question' => $question,'student_id' => $student_id,'exam_starttime' => $exam_starttime,'exam_endtime' => $exam_endtime,'duration' => $duration
+                'exam_id' => $exam_id,'question' => $question,'question' => $question,'student_id' => $student_id,'exam_starttime' => $exam_starttime,'exam_endtime' => $exam_endtime,'duration' => $duration
         ]); 
         return redirect()->back();
             }
@@ -106,7 +106,7 @@ return redirect('/texams')->with('examt',$p)->with('msg',"Exam Published");
     public function addq(Request $request){
 
         DB::table('draftedexams')->insert([
-            'exam_id' => $request->examid,'question' => $request->question,'answer1' => $request->answer1,'answer2' => $request->answer2,'answer3' => $request->answer3,'answer4' => $request->answer4,'correct_answer' => $request->canswer
+            'exam_id' => $request->examid,'question' => $request->question,'qid' => $request->qid,'answer1' => $request->answer1,'answer2' => $request->answer2,'answer3' => $request->answer3,'answer4' => $request->answer4,'correct_answer' => $request->canswer
                                                                         ]);
         return redirect()->back()->with('msg',"Question Saved");
     
@@ -115,7 +115,7 @@ return redirect('/texams')->with('examt',$p)->with('msg',"Exam Published");
 public function addqn(Request $id){
 
     DB::table('draftedexams')->insert([
-        'exam_id' => $id->examid,'question' => $id->question,'answer1' => $id->answer1,'answer2' => $id->answer2,'answer3' => $id->answer3,'answer4' => $id->answer4,'correct_answer' => $id->canswer
+        'exam_id' => $id->examid,'question' => $id->question,'qid' => $id->qid,'answer1' => $id->answer1,'answer2' => $id->answer2,'answer3' => $id->answer3,'answer4' => $id->answer4,'correct_answer' => $id->canswer
 ]);
 $ti=Carbon::now()->toDateTimeString();
 DB::table('exams')->insert([

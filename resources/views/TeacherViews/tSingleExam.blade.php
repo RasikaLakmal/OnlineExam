@@ -174,8 +174,8 @@ background-color: skyblue;
         @foreach ($Xt as $user)
     <tr>
       
-      <td>{{$user->question}}</td>
-      <td>1.{{$user->answer1}}</br>2.{{$user->answer2}}</br>3.{{$user->answer3}}</br>4.{{$user->answer4}}</td>
+      <td>{{$user->qid}}.{{$user->question}}</td>
+      <td>a) {{$user->answer1}}</br>b) {{$user->answer2}}</br>c) {{$user->answer3}}</br>d) {{$user->answer4}}</td>
       
     </tr>
     @endforeach
@@ -208,6 +208,7 @@ background-color: skyblue;
         
         <input id="examid" class="form-control"  type="hidden" name="examid" placeholder="ExamId" required="required" value="{{$Xtt}}"><br>
         <input id="id" class="form-control" type="hidden" name="id" placeholder="Question" required="required" ><br>
+        <div title="questionid">Question id</div><input id="qid" class="form-control" type="text" name="qid" placeholder="Question Id" required="required" ><br>
         <div title="question">Question</div><input id="question" class="form-control" type="text" name="question" placeholder="Question" required="required" ><br>
         <div title="answer1">Answer1</div><input id="answer1" class="form-control" type="text" name="answer1" placeholder="Answe 1" required="required" ><br>
         <div title="answer2">Answer2</div><input id="answer2" class="form-control" type="text" name="answer2" placeholder="Answe 2" required="required" ><br>

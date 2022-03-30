@@ -17,6 +17,7 @@ class CreatePublishedexamsTable extends Migration
             $table->id();
             $table->string('exam_id');
             $table->string('question',1500);
+            $table->string('qid');
             $table->string('answer1',1500);
             $table->string('answer2',1500);
             $table->string('answer3',1500);

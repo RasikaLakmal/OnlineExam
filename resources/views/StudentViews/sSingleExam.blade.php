@@ -176,25 +176,27 @@ input.invalid {
 <div style=" margin-left:14% ; padding:0px ;" >
 </br><form id="regForm"  method="POST" action="/answeringed" >
 @csrf
-
+<?php $qcount=count($Xt) ?>
+<input id="qcount" class="form-control"  type="hidden" name="qcount" placeholder="ExamId" required="required" value="{{$qcount}}">
+<input id="qs" class="form-control"  type="hidden" name="qs" placeholder="ExamId" required="required" value="{{$Xt}}">
 <?php $n1=1; ?>
 @foreach($Xt as $x)
 <!-- One "tab" for each step in the form: -->
 <input id="examid" class="form-control"  type="hidden" name="examid" placeholder="ExamId" required="required" value="{{$Xtt}}">
-<div class="tab"><h2>{{$x->question}}</h2>
+<div class="tab"><h2>{{$x->qid}}.{{$x->question}}</h2>
   <p><div class="form-check">
-  <input  type="radio" class="form-check-input" id="{{$x->question}}a1" name="{{$x->question}}" value="{{$x->answer1}}" checked>{{$x->answer1}}
+  <input  type="radio" class="form-check-input" id="{{$x->qid}}a1" name="{{$x->qid}}" value="{{$x->answer1}}" checked>a) {{$x->answer1}}
   <label class="form-check-label" for="radio1"></label>
 </div>
 <div class="form-check">
-  <input type="radio" class="form-check-input" id="{{$x->question}}a2" name="{{$x->question}}" value="{{$x->answer2}}">{{$x->answer2}}
+  <input type="radio" class="form-check-input" id="{{$x->qid}}a2" name="{{$x->qid}}" value="{{$x->answer2}}">b) {{$x->answer2}}
   <label class="form-check-label" for="radio2"></label>
 </div>
 <div class="form-check">
-  <input type="radio" class="form-check-input" id="{{$x->question}}a3" name="{{$x->question}}" value="{{$x->answer3}}">{{$x->answer3}}
+  <input type="radio" class="form-check-input" id="{{$x->qid}}a3" name="{{$x->qid}}" value="{{$x->answer3}}">c) {{$x->answer3}}
   <label class="form-check-label" for="radio2"></label>
 </div><div class="form-check">
-  <input type="radio" class="form-check-input" id="{{$x->question}}a4" name="{{$x->question}}" value="{{$x->answer4}}">{{$x->answer4}}
+  <input type="radio" class="form-check-input" id="{{$x->qid}}a4" name="{{$x->qid}}" value="{{$x->answer4}}">d) {{$x->answer4}}
   <label class="form-check-label" for="radio2"></label>
 </div></p>
 </div>

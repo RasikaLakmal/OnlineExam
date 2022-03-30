@@ -42,10 +42,11 @@ class StudentController extends Controller
 
 
 
-      for($i=1; $i<4; $i++){ 
+      for($i=1; $i<=$request->qcount; $i++){ 
           echo $w['q'.$i];
+         //return print_r($request->qs[$i]);
           DB::table('answeringexams')->insert([
-            'exam_id' => $request->examid, 'question' => 'q'.$i,'selected_answer' =>$w['q'.$i]
+            'exam_id' => $request->examid, 'qid' => 'q'.$i,'question' =>$request->question,'selected_answer' =>$w['q'.$i]
           ]);
       }
         //

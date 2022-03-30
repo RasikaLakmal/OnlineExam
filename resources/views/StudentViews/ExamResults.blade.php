@@ -42,15 +42,15 @@ body{margin-left: 10%;
    <div  ><h4>Questions</h4>
     
     <div class="form-check">
-  <input  type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>Question 1
+  <input  type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>Question 1    wrong
   <label class="form-check-label" for="radio1"></label>
 </div>
 <div class="form-check">
-  <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">Question 2
+  <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">Question 2 correct
   <label class="form-check-label" for="radio2"></label>
 </div>
 <div class="form-check">
-  <input type="radio" class="form-check-input" disabled>Question 3
+  <input type="radio" class="form-check-input" disabled>Question 3  wrong
   <label class="form-check-label"></label>
 </div></div></div>
 </br>
