@@ -15,7 +15,7 @@ class CreateSexamsTable extends Migration
     {
         Schema::create('sexams', function (Blueprint $table) {
             $table->id();
-            $table->string('exam_id')->unique();
+            $table->string('exam_id')->nullable();
             $table->string('teacher_id')->nullable();
             $table->dateTime('starting_time')->useCurrent();
             $table->time('duration')->nullable();

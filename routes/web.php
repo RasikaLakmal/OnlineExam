@@ -38,7 +38,7 @@ Route::get('/ntsexams',[TeacherController::class, 'ntsexams']);
 Route::post('/newexamcd',[TeacherController::class, 'newexamcd']);
 Route::get('/newexamc',[TeacherController::class, 'newexamc']);
 Route::get('/examt',[TeacherController::class, 'examt']);
-Route::get('/eresults',[StudentController::class, 'eresults']);
+Route::get('/eresults/{id}',[StudentController::class, 'eresults'])->name('eresults');
 Route::get('/sexams',[StudentController::class, 'sexams']);
 Route::get('/ssexams/{id}',[StudentController::class, 'ssexams'])->name('ssexams');
 Route::get('/waiting',[StudentController::class, 'waiting']);

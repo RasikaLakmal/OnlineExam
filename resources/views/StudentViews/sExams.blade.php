@@ -124,7 +124,11 @@
   <tbody>
   @foreach($d as $user)
     <tr>
-    <td scope="row"><a href="{{route('ssexams',$user->exam_id)}}" target="_blank">{{$user->exam_id}}</a></td>
+    @if($user->status=='pending')
+            <td scope="row"><a href="{{route('ssexams',$user->exam_id)}}" target="_blank">{{$user->exam_id}}</a></td>
+            @elseif($user->status=='attended')
+            <td scope="row"><a href="{{route('eresults',$user->exam_id)}}" target="_blank">{{$user->exam_id}}</a></td>
+            @endif 
       <td>{{$user->starting_time}}</td>
       <td>{{$user->duration}}</td>
       <td>{{$user->status}}</td>

@@ -27,7 +27,9 @@
 
 <!--link rel="stylesheet" href="styleprof.css"-->
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.2.1/moment.min.js"></script>
+<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
 
  
    
@@ -116,6 +118,138 @@ input.invalid {
 }
 
 </style>
+
+<script>
+  $(document).ready(function() {
+    $('iframe', window.parent.document).css({
+      overflow: 'visible'
+    });
+    $("#toggle1").click(function() {
+      $("#settings").toggle();
+      $(this).text(function(i, text) {
+        return text === "Hide" ? "Show" : "Hide";
+      })
+    });
+    $("#toggle2").click(function() {
+      $("#regulartime").toggle();
+      $(this).text(function(i, text) {
+        return text === "Hide" ? "Show" : "Hide";
+      })
+    });
+    $("#toggle3").click(function() {
+      $("#timehalf").toggle();
+      $(this).text(function(i, text) {
+        return text === "Hide" ? "Show 1.5x" : "Hide";
+      })
+    });
+    $("#toggle4").click(function() {
+      $("#timedouble").toggle();
+      $(this).text(function(i, text) {
+        return text === "Hide" ? "Show 2x" : "Hide";
+      })
+    });
+    $("#size").change(function() {
+      $("span").css("font-size", $(this).val() + "px");
+      $("span").css("line-height", $(this).val() + "px");
+    });
+  });
+
+</script>
+<script>
+  var j;
+
+  function timeNow(l) {
+    window.clearTimeout(j);
+    document.getElementById('l').value =l;
+    l = parseInt(l);
+    var time = document.getElementById('customtime').value;
+    if (time !== '') {
+    	var t = time.split(":")
+      time = moment().hours(t[0]).minutes(t[1]).seconds(0);
+      time.millisecond(0);
+    } else {
+      time = moment().millisecond(0);
+    }
+    var t = endSet(l, time);
+    timing(time, t.endTime, t.endhalfTime, t.enddoubleTime);
+  }
+
+  function timing(startDate, endDate, endhalfDate, enddoubleDate) {
+    var secchk = document.getElementById('seconds');
+    var now = moment();
+    if (secchk.checked){
+    document.getElementById('currenttime').innerText = moment(now).format("h:mm:ss");
+    }else{
+    document.getElementById('currenttime').innerText = moment(now).format("h:mm");
+    }
+
+    var s = (startDate > now ? startDate : now);
+    if (s > now) {
+      var duration = moment.duration(now.diff(s));
+      var durationhalf = moment.duration(now.diff(s));;
+      var durationdouble = moment.duration(now.diff(s));;
+    } else {
+      var duration = moment.duration(endDate.diff(s));
+      var durationhalf = moment.duration(endhalfDate.diff(s));
+      var durationdouble = moment.duration(enddoubleDate.diff(s));
+    }
+    
+ if (secchk.checked) {
+      document.getElementById('timestart').innerText = moment(startDate).format("h:mm:ss");
+      document.getElementById('timeend').innerText = endDate.format("h:mm:ss");
+      document.getElementById('timehalfend').innerText = endhalfDate.format("h:mm:ss");
+      document.getElementById('timedoubleend').innerText = enddoubleDate.format("h:mm:ss");
+      document.getElementById('minsleft').innerText = parseInt(duration.asMinutes()) + ":" + ("0" + Math.abs(parseInt(duration.asSeconds()%60))).slice(-2);
+    document.getElementById('minshalfleft').innerText = parseInt(durationhalf.asMinutes()) + ":" + ("0" + Math.abs(parseInt(durationhalf.asSeconds()%60))).slice(-2);
+    document.getElementById('minsdoubleleft').innerText = parseInt(durationdouble.asMinutes()) + ":" + ("0" + Math.abs(parseInt(durationdouble.asSeconds()%60))).slice(-2);
+    } else {
+      document.getElementById('timestart').innerText = moment(startDate).format("h:mm");
+      document.getElementById('timeend').innerText = endDate.format("h:mm");
+      document.getElementById('timehalfend').innerText = endhalfDate.format("h:mm");
+      document.getElementById('timedoubleend').innerText = enddoubleDate.format("h:mm");
+      document.getElementById('minsleft').innerText = (duration.asMinutes()>2 ? parseInt(duration.asMinutes()) :  parseInt(duration.asMinutes()) + ":" + ("0" + Math.abs(parseInt(duration.asSeconds()%60))).slice(-2));
+    document.getElementById('minshalfleft').innerText = (durationhalf.asMinutes()>2 ? parseInt(durationhalf.asMinutes()) :  parseInt(durationhalf.asMinutes()) + ":" + ("0" + Math.abs(parseInt(durationhalf.asSeconds()%60))).slice(-2));
+    document.getElementById('minsdoubleleft').innerText = (durationdouble.asMinutes()>2 ? parseInt(durationdouble.asMinutes()) :  parseInt(durationdouble.asMinutes()) + ":" + ("0" + Math.abs(parseInt(durationdouble.asSeconds()%60))).slice(-2));
+    }
+  
+    j = setTimeout(function() {
+      timing(startDate, endDate, endhalfDate, enddoubleDate);
+    }, 250);
+  }
+
+  function endSet(l, time) {
+    var endDate = moment(time).add(l, 'minutes');
+    var endhalfDate = moment(time).add(l * 1.5, 'm');
+    var enddoubleDate = moment(time).add(l * 2, 'm');
+    return {
+      endTime: endDate,
+      endhalfTime: endhalfDate,
+      enddoubleTime: enddoubleDate
+    }
+  }
+
+</script>
+
+<style>
+  div {
+    width: 'auto';
+    height: 'auto';
+  }
+
+  @media screen and (min-width:300px) {
+    span {
+      display: inline-block;
+      font-size: 20px;
+      line-height: 22px;
+    }
+  }
+
+  .dhide {
+    display: none;
+}
+</style>
+
+
 <body><div class="card" style="width: 180rem;">
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -168,12 +302,56 @@ input.invalid {
     
  </br>
 
- <h3 >{{$Xtt}}</h3></br>
-    
-    <h4 class="text-center">Time Left :<span id="timer" style="color: red">0.00</span></b></h4><br>
+ <h1 ><b>{{$Xtt}}</b></h1></br>
+
+ <button id="toggle1">Hide</button>
+<div id="settings">
+@foreach($Zt as $z)
+  <label for="length"></label>
+  <input type="hidden" id="length" name="length" value="{{ $z->duration }}">
+  <input type="hidden" id="l">
+  @endforeach
+  <label for="customtime"></label>
+  <input type="hidden"  name="customtime" value="{{ $z->starting_time }}" id="customtime">
+  
+  <label for="seconds">Include Seconds</label>
+  <input type="checkbox" id="seconds">
+  <button onclick="timeNow(document.getElementById('length').value)" class="action">Start</button></div>
+<br/>
+<div class="dhide">
+  <span id="currenttimelabel" type="hidden">Current Time:     </span>
+  <span id="currenttime"></span><br/>
+  <span id="timestartlabel">Start Time:     </span>
+  <span id="timestart"></span><br/>
+</div>
+<h4 class="text-center">
+
+<div id="regulartime" >
+  <span id="timeendlabel">End Time:     </span>
+  <span id="timeend"></span><br/>
+  <span id="minsleftlabel">Time Left:     </span>
+  <span id="minsleft"></span>
+</div>
+</h4>
+
+<div class="dhide" id="timehalf" type="hidden" style="border: 2px solid; padding: 10px;">
+  <span id="timehalflabel" type="hidden">1.5x End Time:     </span>
+  <span id="timehalfend"></span><br/>
+  <span id="minshalfleftlabel">1.5x Minutes Left:     </span>
+  <span id="minshalfleft"></span>
+</div>
+
+<div class="dhide" id="timedouble" style="border: 2px solid; padding: 10px;">
+  <span id="timedoublelabel">2x End Time:     </span>
+  <span id="timedoubleend"></span><br/>
+  <span id="minsdoubleleftlabel">2x Minutes Left:     </span>
+  <span id="minsdoubleleft"></span><br/>
+</div>
+  
+ 
 </br>
 
-<div style=" margin-left:14% ; padding:0px ;" >
+<div style="height: 550px; background-color:LightGray; margin-left:14% ; margin-right:14% ; border: 2px solid; padding: 10px;" >
 </br><form id="regForm"  method="POST" action="/answeringed" >
 @csrf
 <?php $qcount=count($Xt) ?>
@@ -183,7 +361,10 @@ input.invalid {
 @foreach($Xt as $x)
 <!-- One "tab" for each step in the form: -->
 <input id="examid" class="form-control"  type="hidden" name="examid" placeholder="ExamId" required="required" value="{{$Xtt}}">
-<div class="tab"><h2>{{$x->qid}}.{{$x->question}}</h2>
+<input id="canswer" class="form-control"  type="hidden" name="canswer" placeholder="c" required="required" value="{{$x->correct_answer}}">
+<input id="question" class="form-control"  type="hidden" name="question" placeholder="que" required="required" value="{{$x->question}}">
+<div class="tab"><h1><b>{{$x->qid}}.{{$x->question}}</b></h1>
+<div style="height: 130px; margin-left:1% ; margin-right:1% ; border: 2px solid; padding: 10px;" >
   <p><div class="form-check">
   <input  type="radio" class="form-check-input" id="{{$x->qid}}a1" name="{{$x->qid}}" value="{{$x->answer1}}" checked>a) {{$x->answer1}}
   <label class="form-check-label" for="radio1"></label>
@@ -200,14 +381,16 @@ input.invalid {
   <label class="form-check-label" for="radio2"></label>
 </div></p>
 </div>
+</div>
 <?php $n1++; ?>
 @endforeach
-
+</br>
 
 <div style="overflow:auto;">
   <div style="float:right;">
-    <button type="button" class="btn btn-warning " id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-    <button type="button" class="btn btn-success " id="nextBtn" onclick="nextPrev(1)">Next</button>
+    <button type="button" class="btn btn-warning " id="prevBtn" onclick="nextPrev(-1)">Previous</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-secondary " id="" >Question</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-success " id="nextBtn" onclick="nextPrev(1)">Next</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   </div>
 </div>
 

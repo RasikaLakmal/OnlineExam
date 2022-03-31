@@ -127,13 +127,19 @@
         @foreach($examt as $user)
             <tr>
             
-
+            @if($user->status=='drafted')
             <td scope="row"><a href="{{route('tsexams',$user->exam_id)}}" target="_blank">{{$user->exam_id}}</a></td>
+            @elseif($user->status=='published')
+            <td scope="row"><a href="mse" target="_blank">{{$user->exam_id}}</a></td>
+            @endif 
       <td>{{$user->updated_at}}</td>
+         
+        
       <td>{{$user->status}}</td>
                 
                
             </tr>
+                
         @endforeach
         </tbody>
     </table>
